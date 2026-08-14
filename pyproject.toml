@@ -1,0 +1,19 @@
+[project]
+name = "agnoasimov"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Nicolas", email = "nicolasandreose@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "agno>=2.9.0",
+]
+
+[project.scripts]
+agnoasimov = "agnoasimov:main"
+
+[build-system]
+requires = ["uv_build>=0.12.4,<0.13.0"]
+build-backend = "uv_build"
