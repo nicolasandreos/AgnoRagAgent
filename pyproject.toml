@@ -8,8 +8,15 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
-    "agno>=2.9.0",
+    "agno[openai,os]>=2.9.0",
+    "python-dotenv>=1.2.2",
+    "tavily-python>=0.7.27",
+    "yfinance>=1.6.0",
 ]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
 
 [project.scripts]
 agnoasimov = "agnoasimov:main"
