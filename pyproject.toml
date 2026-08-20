@@ -8,9 +8,10 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
-    "agno[openai,os]>=2.9.0",
+    "agno[openai,os,pdf]>=2.9.0",
     "chonkie[semantic]>=1.7.0",
     "chromadb>=1.5.9",
+    "pypdf>=6.16.1",
     "python-dotenv>=1.2.2",
     "streamlit>=1.62.0",
     "tavily-python>=0.7.27",
