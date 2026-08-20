@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from agno.agent import Agent
@@ -66,11 +67,14 @@ agent_os = AgentOS(
     cors_allowed_origins=[
         "http://localhost:3000",
         "https://os.agno.com",
+        "https://agnoragagent.onrender.com",
+        "https://agnoragagent-1.onrender.com",
     ],
 )
 
 app = agent_os.get_app()
 
 if __name__ == "__main__":
-    # reload=True spawns a Windows process that cannot import "scripts.deploy"
-    agent_os.serve(app="deploy:app", port=7777, reload=False)
+    host = os.getenv("AGENT_OS_HOST", "0.0.0.0")
+    port = int(os.getenv("PORT") or os.getenv("AGENT_OS_PORT") or "7777")
+    agent_os.serve(app=app, host=host, port=port, reload=False)

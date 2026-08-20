@@ -1,11 +1,13 @@
 import json
+import os
 import uuid
 
 import requests
 import streamlit as st
 
 AGENT_ID = "assistente-de-vale"
-API_URL = f"http://localhost:7777/agents/{AGENT_ID}/runs"
+AGENTOS_URL = os.getenv("AGENTOS_URL", "http://localhost:7777").rstrip("/")
+API_URL = f"{AGENTOS_URL}/agents/{AGENT_ID}/runs"
 SESSION_ID = "vale-session"
 
 st.set_page_config(page_title="Assistente de Vale", page_icon="⛏️")
