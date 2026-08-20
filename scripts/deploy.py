@@ -30,20 +30,6 @@ knowledge = Knowledge(
     vector_db=vector_db,
 )
 
-knowledge.add_content(
-    path=str(PDF_PATH),
-    reader=PDFReader(
-        chunking_strategy=SemanticChunking()
-    ),
-    metadata={
-        "company": "Vale",
-        "ticker": "VALE3",
-        "sector": "Mineração",
-        "country": "Brasil",
-    },
-    skip_if_exists=True,
-)
-
 vale_agent = Agent(
     id="assistente-de-vale",
     name="Assistente de Vale",
@@ -73,6 +59,22 @@ agent_os = AgentOS(
 )
 
 app = agent_os.get_app()
+
+
+@app.on_event("startup")
+def load_knowledge() -> None:
+    knowledge.add_content(
+        path=str(PDF_PATH),
+        reader=PDFReader(chunking_strategy=SemanticChunking()),
+        metadata={
+            "company": "Vale",
+            "ticker": "VALE3",
+            "sector": "Mineração",
+            "country": "Brasil",
+        },
+        skip_if_exists=True,
+    )
+
 
 if __name__ == "__main__":
     host = os.getenv("AGENT_OS_HOST", "0.0.0.0")
